@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catone: Presentazione Maggio 2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+<style>
+/* ===========================================
+   VIEWPORT FITTING: MANDATORY BASE STYLES
+   =========================================== */
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 100%;
+    overflow: hidden;
+    padding: var(--slide-padding);
+}
+
+:root {
+    --title-size: clamp(1.5rem, 5vw, 4rem);
+    --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+    --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+    --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+    --small-size: clamp(0.65rem, 1vw, 0.875rem);
+    --slide-padding: clamp(1.5rem, 4vw, 4.5rem);
+    --content-gap: clamp(0.5rem, 2vw, 2rem);
+    --element-gap: clamp(0.25rem, 1vw, 1rem);
+
+    /* === BRAND TOKENS (allineati alla deck Keynote originale) === */
+    --bg-cream: #FFFFFF;
+    --bg-card: #FCFCFC;
+    --bg-card-soft: #FCFCFC;
+    --ink: #262626;
+    --ink-soft: #404040;
+    --ink-mute: #737373;
+    --rule: #E5E5E5;
+    --orange: #1EBC88;
+    --orange-dark: #16A074;
+    --orange-soft: #5DD4A8;
+    --red: #B23B1F;
+    --green: #2E7D5B;
+    --teal: #2A8C8C;
+    --indigo: #5A5BA8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg-cream);
+    color: var(--ink);
+    font-size: var(--body-size);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    letter-spacing: -0.31px;
+    font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+    background: var(--orange);
+    color: #FFFFFF;
+}
+
+/* === HEADLINES use Inter (heavier weights for hierarchy) === */
+h1, h2, h3, .serif {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.31px;
+    line-height: 1.1;
+}
+
+h1 { font-size: var(--title-size); }
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); }
+
+/* === TOP ORANGE BAR === */
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--orange);
+    z-index: 5;
+}
+
+/* === FOOTER === */
+.slide-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: clamp(0.5rem, 1.5vh, 1rem) clamp(1.5rem, 4vw, 4.5rem);
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+    color: var(--ink-mute);
+    letter-spacing: -0.31px;
+    z-index: 4;
+}
+
+.slide-footer .left { font-weight: 500; }
+.slide-footer .right { font-weight: 500; }
+
+/* === SECTION KICKER (small orange label top-left) === */
+.kicker {
+    font-size: clamp(0.65rem, 0.85vw, 0.8rem);
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: -0.31px;
+    text-transform: uppercase;
+    margin-bottom: clamp(1.5rem, 4vh, 3rem);
+}
+
+/* === SLIDE: TITLE === */
+.title-slide .brand-mark {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -0.31px;
+    line-height: 1;
+    color: var(--ink);
+}
+.title-slide .brand-mark .dot { color: var(--orange); }
+.title-slide .tagline {
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    color: var(--ink-soft);
+    margin-top: clamp(1rem, 2.5vh, 2rem);
+    max-width: 60ch;
+}
+.title-slide .rule {
+    width: clamp(80px, 12vw, 160px);
+    height: 4px;
+    background: var(--orange);
+    margin: clamp(2rem, 5vh, 4rem) 0 clamp(1.5rem, 3.5vh, 2.5rem);
+}
+.title-slide .meta {
+    color: var(--ink-mute);
+    font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+    line-height: 1.7;
+}
+
+/* === SECTION DIVIDER === */
+.section-divider {
+    justify-content: flex-start;
+    padding-top: clamp(4rem, 12vh, 8rem);
+}
+.section-divider .section-number {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+}
+.section-divider .section-rule {
+    width: clamp(180px, 22vw, 320px);
+    height: 2px;
+    background: var(--ink);
+    margin: clamp(1rem, 3vh, 2rem) 0 clamp(1.5rem, 3.5vh, 2.5rem);
+}
+.section-divider h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+.section-divider .section-sub {
+    font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+    color: var(--ink-soft);
+    margin-top: clamp(0.75rem, 2vh, 1.5rem);
+    max-width: 55ch;
+    line-height: 1.4;
+}
+
+/* === INDEX (Indice) === */
+.index-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2.2vh, 1.5rem);
+    margin-top: clamp(1rem, 2.5vh, 2rem);
+}
+.index-row {
+    display: grid;
+    grid-template-columns: clamp(36px, 4vw, 48px) 1fr;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    align-items: start;
+}
+.index-num {
+    width: clamp(36px, 4vw, 48px);
+    height: clamp(36px, 4vw, 48px);
+    border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    font-weight: 700;
+    font-size: clamp(0.7rem, 1vw, 0.85rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.index-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 1.7vw, 1.4rem);
+    color: var(--ink);
+}
+.index-sub {
+    color: var(--ink-mute);
+    font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+    margin-top: 0.2rem;
+}
+
+/* === STAT CARDS === */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+    margin-top: clamp(1.5rem, 4vh, 2.5rem);
+}
+.stat-card {
+    background: var(--bg-card);
+    border-radius: clamp(12px, 1.5vw, 22px);
+    padding: clamp(1rem, 2.5vw, 2rem);
+    position: relative;
+    min-height: clamp(180px, 32vh, 280px);
+    display: flex;
+    flex-direction: column;
+}
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: clamp(0.75rem, 1.5vh, 1.25rem);
+    left: clamp(1rem, 2.5vw, 2rem);
+    width: 36px;
+    height: 3px;
+    background: var(--orange);
+}
+.stat-card.red::before { background: var(--red); }
+.stat-card .big {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: var(--orange);
+    margin-top: clamp(0.75rem, 2vh, 1.25rem);
+    line-height: 1;
+}
+.stat-card.red .big { color: var(--red); }
+.stat-card .label {
+    font-weight: 700;
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    color: var(--ink);
+    line-height: 1.3;
+}
+.stat-card .desc {
+    color: var(--ink-soft);
+    margin-top: clamp(0.5rem, 1vh, 0.85rem);
+    font-size: clamp(0.7rem, 1vw, 0.9rem);
+    line-height: 1.45;
+}
+
+/* === TWO-COLUMN CARD === */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    margin-top: clamp(1.5rem, 3vh, 2rem);
+}
+.col-card {
+    background: var(--bg-card);
+    border-radius: clamp(12px, 1.5vw, 22px);
+    padding: clamp(1.25rem, 2.5vw, 2.25rem);
+    position: relative;
+}
+.col-card.accent::before {
+    content: '';
+    position: absolute;
+    top: clamp(0.75rem, 1.5vh, 1.25rem);
+    left: clamp(1.25rem, 2.5vw, 2.25rem);
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+}
+.col-card.green::before { background: var(--green); }
+.col-card .col-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+    color: var(--orange);
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+}
+.col-card.green .col-title { color: var(--green); }
+.col-card ul {
+    list-style: none;
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.4rem, 0.9vh, 0.7rem);
+}
+.col-card ul li {
+    position: relative;
+    padding-left: 1.1em;
+    color: var(--ink-soft);
+    font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+    line-height: 1.45;
+}
+.col-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--ink-mute);
+}
+
+/* === STEP FLOW (5 steps) === */
+.step-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(0.5rem, 1vw, 1rem);
+    align-items: stretch;
+    margin-top: clamp(1.5rem, 3.5vh, 2.5rem);
+    position: relative;
+}
+.step-card {
+    background: var(--bg-card);
+    border-radius: clamp(10px, 1.2vw, 18px);
+    padding: clamp(0.9rem, 1.8vw, 1.6rem);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: clamp(0.6rem, 1.2vh, 1rem);
+    left: clamp(0.9rem, 1.8vw, 1.6rem);
+    width: 32px;
+    height: 3px;
+    background: var(--orange);
+}
+.step-card:nth-child(2)::before { background: var(--indigo); }
+.step-card:nth-child(3)::before { background: var(--orange-soft); }
+.step-card:nth-child(4)::before { background: var(--green); }
+.step-card:nth-child(5)::before { background: var(--teal); }
+.step-card .num {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
+    font-weight: 800;
+    color: var(--orange);
+    margin-top: clamp(0.5rem, 1.2vh, 1rem);
+    line-height: 1;
+}
+.step-card:nth-child(2) .num { color: var(--indigo); }
+.step-card:nth-child(3) .num { color: var(--orange-soft); }
+.step-card:nth-child(4) .num { color: var(--green); }
+.step-card:nth-child(5) .num { color: var(--teal); }
+.step-card .step-title {
+    font-weight: 700;
+    margin-top: clamp(0.5rem, 1.2vh, 1rem);
+    font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+    color: var(--ink);
+}
+.step-card .step-desc {
+    color: var(--ink-soft);
+    font-size: clamp(0.68rem, 0.95vw, 0.85rem);
+    margin-top: clamp(0.4rem, 1vh, 0.75rem);
+    line-height: 1.4;
+}
+
+/* === SCREENSHOT PLACEHOLDER === */
+.screenshot {
+    background: var(--bg-card-soft);
+    border: 2px dashed var(--ink-mute);
+    border-radius: clamp(8px, 1vw, 14px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(180px, 38vh, 360px);
+    max-height: min(48vh, 420px);
+    position: relative;
+    overflow: hidden;
+    color: var(--ink-mute);
+    padding: clamp(1rem, 2vw, 2rem);
+    text-align: center;
+}
+.screenshot img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.screenshot .placeholder-icon {
+    width: clamp(40px, 5.5vw, 64px);
+    height: clamp(40px, 5.5vw, 64px);
+    border-radius: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    color: var(--ink-mute);
+}
+.screenshot .placeholder-icon svg {
+    width: 55%;
+    height: 55%;
+    stroke-width: 1.5;
+}
+.screenshot .placeholder-label {
+    font-weight: 700;
+    color: var(--ink-soft);
+    font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+    margin-bottom: 0.25rem;
+}
+.screenshot .placeholder-hint {
+    font-size: clamp(0.65rem, 0.85vw, 0.78rem);
+    color: var(--ink-mute);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    background: var(--bg-card);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-top: 0.25rem;
+}
+/* When an image loads, the .has-image class hides placeholder chrome */
+.screenshot.has-image {
+    border-style: solid;
+    border-color: var(--rule);
+    padding: 0;
+    background: var(--bg-cream);
+}
+.screenshot.has-image .placeholder-icon,
+.screenshot.has-image .placeholder-label,
+.screenshot.has-image .placeholder-hint { display: none; }
+
+/* === SPLIT layout: text + screenshot === */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    align-items: stretch;
+    margin-top: clamp(1rem, 2.5vh, 1.75rem);
+    min-height: 0;
+}
+.split-layout .text-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1.2vh, 1rem);
+}
+.split-layout .text-col h3 {
+    color: var(--orange);
+    margin-bottom: 0.25rem;
+}
+.split-layout .text-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.3rem, 0.8vh, 0.6rem);
+}
+.split-layout .text-col ul li {
+    padding-left: 1em;
+    position: relative;
+    font-size: clamp(0.75rem, 1.05vw, 0.95rem);
+    color: var(--ink-soft);
+    line-height: 1.45;
+}
+.split-layout .text-col ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--ink-mute);
+}
+.split-layout .text-col .legend {
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+}
+.split-layout .text-col .legend .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.3rem;
+}
+.split-layout .text-col .legend .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%; flex-shrink: 0;
+}
+
+/* === VERIFICHE GRID (panoramica check) === */
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.6rem, 1.5vh, 1.25rem) clamp(2rem, 4vw, 4rem);
+    margin-top: clamp(1.25rem, 3vh, 2rem);
+}
+.check-group-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+    color: var(--orange);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    grid-column: 1 / -1;
+}
+.check-item {
+    display: grid;
+    grid-template-columns: clamp(28px, 3vw, 36px) 1fr;
+    gap: 0.6rem;
+    align-items: start;
+}
+.check-item .num-dot {
+    width: clamp(24px, 2.4vw, 30px);
+    height: clamp(24px, 2.4vw, 30px);
+    border-radius: 50%;
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+    font-weight: 700;
+    color: var(--orange);
+    flex-shrink: 0;
+}
+.check-item .num-dot.new {
+    background: var(--orange);
+    color: white;
+}
+.check-item .ci-title {
+    font-weight: 700;
+    font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+    color: var(--ink);
+}
+.check-item .ci-title .new-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    letter-spacing: -0.31px;
+    font-weight: 700;
+}
+.check-item .ci-sub {
+    color: var(--ink-mute);
+    font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+    margin-top: 0.15rem;
+    line-height: 1.4;
+}
+
+/* === SLIDE 5 (Il lavoro meccanico) === */
+.work-broken {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    margin-top: clamp(1.5rem, 3vh, 2rem);
+    align-items: start;
+}
+.quote-block {
+    border-left: 4px solid var(--orange);
+    padding: clamp(0.5rem, 1.5vh, 1rem) 0 clamp(0.5rem, 1.5vh, 1rem) clamp(1rem, 2vw, 1.5rem);
+}
+.quote-block .quote {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 1.6vw, 1.35rem);
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
+}
+.quote-block .quote-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1.2vh, 0.85rem);
+    color: var(--ink-soft);
+    font-size: clamp(0.75rem, 1.05vw, 0.9rem);
+}
+.quote-block .quote-list strong {
+    color: var(--ink);
+    display: block;
+    font-weight: 600;
+}
+.responsibility-card {
+    background: var(--bg-card);
+    border-radius: clamp(12px, 1.5vw, 22px);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    position: relative;
+}
+.responsibility-card::before {
+    content: '';
+    position: absolute;
+    top: clamp(0.75rem, 1.5vh, 1.25rem);
+    left: clamp(1.25rem, 2.5vw, 2rem);
+    width: 36px;
+    height: 3px;
+    background: var(--orange);
+}
+.responsibility-card h3 {
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+}
+.responsibility-card p {
+    color: var(--ink-soft);
+    margin-top: clamp(0.75rem, 1.5vh, 1rem);
+    font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+    line-height: 1.5;
+}
+.bottom-banner {
+    background: var(--bg-card-soft);
+    border-radius: clamp(8px, 1vw, 14px);
+    padding: clamp(0.9rem, 1.8vw, 1.5rem);
+    margin-top: clamp(1.5rem, 3vh, 2rem);
+    color: var(--orange);
+    font-weight: 600;
+    font-size: clamp(0.78rem, 1.1vw, 1rem);
+    line-height: 1.45;
+}
+
+/* === NARRATIVE SLIDE === */
+.narrative {
+    max-width: 56ch;
+    margin: 0 auto;
+    text-align: left;
+}
+.narrative h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+    margin-bottom: clamp(1rem, 2.5vh, 1.75rem);
+}
+.narrative p {
+    color: var(--ink-soft);
+    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+    line-height: 1.55;
+    margin-bottom: clamp(0.75rem, 1.5vh, 1.15rem);
+}
+.narrative .highlight { color: var(--orange); font-weight: 600; }
+
+/* === SECURITY 3-CARD === */
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+    margin-top: clamp(1.5rem, 4vh, 2.5rem);
+}
+.security-card {
+    background: var(--bg-card);
+    border-radius: clamp(12px, 1.5vw, 22px);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    position: relative;
+    min-height: clamp(160px, 28vh, 240px);
+}
+.security-card::before {
+    content: '';
+    position: absolute;
+    top: clamp(0.75rem, 1.5vh, 1.25rem);
+    left: clamp(1.25rem, 2.5vw, 2rem);
+    width: 36px;
+    height: 3px;
+    background: var(--green);
+}
+.security-card:nth-child(2)::before { background: var(--indigo); }
+.security-card:nth-child(3)::before { background: var(--teal); }
+.security-card h3 {
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+}
+.security-card p {
+    color: var(--ink-soft);
+    margin-top: clamp(0.75rem, 1.5vh, 1rem);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    line-height: 1.5;
+}
+.security-bottom {
+    background: var(--bg-card-soft);
+    border-radius: clamp(8px, 1vw, 14px);
+    padding: clamp(0.9rem, 1.5vw, 1.25rem);
+    margin-top: clamp(1.5rem, 3vh, 2rem);
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+}
+
+/* === TEAM slide === */
+.team-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    margin-top: clamp(1.5rem, 3vh, 2rem);
+}
+.team-list .intro {
+    color: var(--ink-soft);
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+    font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+    line-height: 1.5;
+}
+.team-member { margin-bottom: clamp(0.75rem, 1.8vh, 1.25rem); }
+.team-member .name {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: clamp(0.85rem, 1.15vw, 1.05rem);
+}
+.team-member .bio {
+    color: var(--ink-soft);
+    font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+    line-height: 1.45;
+    margin-top: 0.2rem;
+}
+.cta-card {
+    background: var(--bg-card);
+    border-radius: clamp(12px, 1.5vw, 22px);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    position: relative;
+}
+.cta-card::before {
+    content: '';
+    position: absolute;
+    top: clamp(0.75rem, 1.5vh, 1.25rem);
+    left: clamp(1.25rem, 2.5vw, 2rem);
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+}
+.cta-card .cta-kicker {
+    font-weight: 700;
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    color: var(--ink);
+}
+.cta-card h3 {
+    margin-top: clamp(0.5rem, 1vh, 0.75rem);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+}
+.cta-card p {
+    color: var(--ink-soft);
+    margin-top: clamp(0.75rem, 1.5vh, 1rem);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    line-height: 1.5;
+}
+.cta-card .email {
+    margin-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    color: var(--orange);
+}
+.cta-card .url {
+    color: var(--ink-mute);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    margin-top: 0.3rem;
+}
+.team-brand {
+    text-align: center;
+    margin-top: clamp(1rem, 2.5vh, 2rem);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+.team-brand .dot { color: var(--orange); }
+
+/* === HEADING for content slides === */
+.content-heading {
+    font-size: clamp(1.4rem, 3vw, 2.4rem);
+    margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+    max-width: 90%;
+}
+
+/* === EDIT MODE === */
+.edit-toggle {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    background: rgba(26, 24, 20, 0.85);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+body:hover .edit-toggle { opacity: 0.4; }
+.edit-toggle:hover, body.edit-mode .edit-toggle { opacity: 1; }
+body.edit-mode .edit-toggle { background: var(--orange); }
+body.edit-mode [contenteditable="true"]:hover {
+    outline: 2px dashed var(--orange);
+    outline-offset: 2px;
+    cursor: text;
+}
+body.edit-mode [contenteditable="true"]:focus {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+    background: rgba(30, 188, 136, 0.08);
+}
+.edit-hint {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    z-index: 100;
+    display: none;
+    font-family: 'Inter', sans-serif;
+}
+body.edit-mode .edit-hint { display: block; }
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+    html { scroll-behavior: auto; }
+}
+
+@media (max-height: 700px) {
+    :root {
+        --slide-padding: clamp(1rem, 3vw, 3rem);
+        --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+    }
+}
+
+@media print {
+    html { scroll-snap-type: none; }
+    .slide { page-break-after: always; }
+    .edit-toggle, .edit-hint { display: none; }
+}
+</style>
+</head>
+<body class="edit-mode">
+
+<button class="edit-toggle" onclick="toggleEdit()">EDIT MODE (E)</button>
+<div class="edit-hint">Modalità modifica attiva: Premi X per esportare · E per uscire</div>
+
+<!-- SLIDE 1: TITLE -->
+<section class="slide title-slide">
+    <div class="slide-content">
+        <div class="brand-mark">Catone<span class="dot">.</span></div>
+        <div class="tagline" contenteditable="true">Da Catone (DD fiscale) a una piattaforma di due diligence contabile costruita con MPO</div>
+        <div class="rule"></div>
+        <div class="meta" contenteditable="true">
+            Presentazione per MPO<br>
+            Maggio 2026<br>
+            <br>
+            LR Tech S.r.l.
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">1</span>
+    </div>
+</section>
+
+<!-- SLIDE 2: INDICE -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Agenda</div>
+        <h1 class="serif" contenteditable="true">Indice</h1>
+        <div class="index-list">
+            <div class="index-row">
+                <div class="index-num">01</div>
+                <div>
+                    <div class="index-title" contenteditable="true">Il contesto</div>
+                    <div class="index-sub" contenteditable="true">Perché la due diligence fiscale è un problema oggi</div>
+                </div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">02</div>
+                <div>
+                    <div class="index-title" contenteditable="true">La soluzione</div>
+                    <div class="index-sub" contenteditable="true">Catone: nuovo onboarding e cosa cambia nel suo lavoro</div>
+                </div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">03</div>
+                <div>
+                    <div class="index-title" contenteditable="true">Le verifiche per tributo</div>
+                    <div class="index-sub" contenteditable="true">12 controlli incrociati automatici, organizzati per imposta</div>
+                </div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">04</div>
+                <div>
+                    <div class="index-title" contenteditable="true">Sicurezza e privacy</div>
+                    <div class="index-sub" contenteditable="true">Come trattiamo i dati dei suoi clienti</div>
+                </div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">05</div>
+                <div>
+                    <div class="index-title" contenteditable="true">Una proposta per MPO</div>
+                    <div class="index-sub" contenteditable="true">Replicare l'impianto di Catone per la due diligence contabile</div>
+                </div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">06</div>
+                <div>
+                    <div class="index-title" contenteditable="true">Chi siamo e prossimi passi</div>
+                    <div class="index-sub" contenteditable="true">Il team e come iniziare insieme</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">2</span>
+    </div>
+</section>
+
+<!-- SLIDE 3: SECTION 01 -->
+<section class="slide section-divider">
+    <div class="slide-content">
+        <div class="section-number">01</div>
+        <div class="section-rule"></div>
+        <h1 class="serif" contenteditable="true">Il contesto</h1>
+        <div class="section-sub" contenteditable="true">Perché la due diligence fiscale è un problema per gli studi professionali oggi</div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">3</span>
+    </div>
+</section>
+
+<!-- SLIDE 4: STAT CARDS -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Il contesto</div>
+        <h2 class="serif" contenteditable="true">Fare due diligence significa analizzare migliaia di pagine, ma è necessario andare oltre.</h2>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="big">200+</div>
+                <div class="label" contenteditable="true">PDF da aprire e confrontare<br>per ogni singola pratica</div>
+                <div class="desc" contenteditable="true">Dichiarazioni, F24, bilanci, liquidazioni, LIPE, visure: sparsi in centinaia di file.</div>
+            </div>
+            <div class="stat-card">
+                <div class="big">5–7 giorni</div>
+                <div class="label" contenteditable="true">di lavoro manuale per<br>le sole verifiche formali</div>
+                <div class="desc" contenteditable="true">Collaboratori qualificati che passano giornate a copiare numeri su fogli Excel.</div>
+            </div>
+            <div class="stat-card red">
+                <div class="big" style="font-size: clamp(1.6rem, 3.2vw, 2.6rem);">Il vero costo</div>
+                <div class="label" contenteditable="true">il lavoro ad alto valore<br>non viene fatto</div>
+                <div class="desc" contenteditable="true">Mentre si controllano codici tributo, nessuno analizza inerenza o trend RF.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">4</span>
+    </div>
+</section>
+
+<!-- SLIDE 5: IL LAVORO MECCANICO -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Il contesto</div>
+        <h2 class="serif" contenteditable="true">Il lavoro meccanico non scala, e non perdona.</h2>
+        <div class="work-broken">
+            <div class="quote-block">
+                <div class="quote" contenteditable="true">"Con centinaia di righe da incrociare a mano, il rischio non è se qualcosa sfugge, è quanto."</div>
+                <div class="quote-list">
+                    <div><strong>Un F24 mancante su un codice tributo 1040 di gennaio?</strong>Invisibile tra 200 pagine.</div>
+                    <div><strong>Un versamento IRES in ritardo di 3 giorni senza ravvedimento?</strong>Serve confrontare tre documenti diversi.</div>
+                    <div><strong>Una discrepanza tra VE50 e bilancio?</strong>Serve un foglio Excel dedicato.</div>
+                </div>
+            </div>
+            <div class="responsibility-card">
+                <h3 class="serif" contenteditable="true">Chi firma la relazione si assume la responsabilità.</h3>
+                <p contenteditable="true">Il professionista merita uno strumento all'altezza della responsabilità che porta. Non un foglio Excel.</p>
+            </div>
+        </div>
+        <div class="bottom-banner" contenteditable="true">Catone elimina il lavoro meccanico: così lei può concentrarsi su ciò che solo un professionista può fare: capire il business del cliente, e affiancarlo in un momento delicato.</div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">5</span>
+    </div>
+</section>
+
+<!-- SLIDE 6: SECTION 02 -->
+<section class="slide section-divider">
+    <div class="slide-content">
+        <div class="section-number">02</div>
+        <div class="section-rule"></div>
+        <h1 class="serif" contenteditable="true">Catone<span style="color: var(--orange);">.</span></h1>
+        <div class="section-sub" style="font-style: italic; font-family: 'Inter', system-ui, sans-serif;" contenteditable="true">
+            Catone le mostra la mappa.<br>
+            Lei conosce il territorio come nessun altro.
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">6</span>
+    </div>
+</section>
+
+<!-- SLIDE 7: 5 STEPS (AGGIORNATO) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">La soluzione</div>
+        <h2 class="serif" contenteditable="true">Dal primo upload all'analisi, in cinque passaggi.</h2>
+        <div class="step-flow">
+            <div class="step-card">
+                <div class="num">01</div>
+                <div class="step-title" contenteditable="true">Crea pratica</div>
+                <div class="step-desc" contenteditable="true">Pagina dedicata: ragione sociale, anni fiscali, ambito. Pronto in 30 secondi.</div>
+            </div>
+            <div class="step-card">
+                <div class="num">02</div>
+                <div class="step-title" contenteditable="true">Carica</div>
+                <div class="step-desc" contenteditable="true">Trascini lo ZIP o i PDF singoli. Anche un archivio con tutto dentro.</div>
+            </div>
+            <div class="step-card">
+                <div class="num">03</div>
+                <div class="step-title" contenteditable="true">Classifica</div>
+                <div class="step-desc" contenteditable="true">L'AI identifica ogni documento: tipo, anno fiscale, contenuto.</div>
+            </div>
+            <div class="step-card">
+                <div class="num">04</div>
+                <div class="step-title" contenteditable="true">Estrai</div>
+                <div class="step-desc" contenteditable="true">I dati strutturati vengono letti da ogni dichiarazione fiscale.</div>
+            </div>
+            <div class="step-card">
+                <div class="num">05</div>
+                <div class="step-title" contenteditable="true">Verifica</div>
+                <div class="step-desc" contenteditable="true">12 controlli incrociati automatici. Anomalie segnalate per tributo.</div>
+            </div>
+        </div>
+        <p style="text-align: center; color: var(--ink-mute); font-style: italic; margin-top: clamp(1.5rem, 3vh, 2rem); font-size: clamp(0.78rem, 1.05vw, 0.95rem);" contenteditable="true">
+            Da quel momento, lavora solo sulle anomalie: non su tutto il materiale.
+        </p>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">7</span>
+    </div>
+</section>
+
+<!-- SLIDE 8: NUOVA PRATICA (NUOVA) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">La soluzione · Nuovo onboarding</div>
+        <h2 class="content-heading serif" contenteditable="true">Aprire una pratica è il primo gesto. L'abbiamo reso semplice.</h2>
+        <div class="split-layout">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">Nuova pratica, in 30 secondi.</h3>
+                <ul>
+                    <li contenteditable="true">Pagina dedicata, non più modale: spazio per i dati che contano</li>
+                    <li contenteditable="true">Ragione sociale, CF/P.IVA, anni fiscali, ambito: tutto in un colpo</li>
+                    <li contenteditable="true">Il sistema sa già cosa serve dopo: la pratica si apre già nel punto giusto del funnel</li>
+                </ul>
+                <p style="color: var(--ink-mute); font-size: clamp(0.7rem, 0.95vw, 0.85rem); margin-top: 0.75rem; font-style: italic;" contenteditable="true">
+                    Phase-derived gating: ogni utente viene riportato al prossimo step naturale della pratica, senza dover cercare dove cliccare.
+                </p>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 12v6M9 15h6"/></svg></div>
+                <div class="placeholder-label">Screenshot della pagina "Nuova Pratica"</div>
+                <div class="placeholder-hint">catone_screenshots/nuova-pratica.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">8</span>
+    </div>
+</section>
+
+<!-- SLIDE 9: INGEST STEPPER (NUOVA) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">La soluzione · Nuovo onboarding</div>
+        <h2 class="content-heading serif" contenteditable="true">L'upload non è più un buco nero. È un percorso.</h2>
+        <div class="split-layout">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">Pill stepper + completion hero.</h3>
+                <ul>
+                    <li contenteditable="true">L'utente vede sempre a che punto è: <em>caricamento → classificazione → estrazione → verifica</em></li>
+                    <li contenteditable="true">Ogni fase ha il suo feedback in tempo reale</li>
+                    <li contenteditable="true">A fine upload, un riepilogo chiaro: cosa è stato classificato, cosa serve rivedere</li>
+                    <li contenteditable="true">Pill <strong>"Verifica estrazione"</strong> sui documenti che richiedono attenzione, cliccabile direttamente</li>
+                </ul>
+                <p style="color: var(--ink-mute); font-size: clamp(0.7rem, 0.95vw, 0.85rem); margin-top: 0.75rem; font-style: italic;" contenteditable="true">
+                    Niente più "sto caricando, ora chissà cosa succede". Il professionista sa sempre dove è il lavoro.
+                </p>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78A6 6 0 0 0 5 11.5a4.5 4.5 0 0 0 1.5 8.5h11z"/><path d="M12 12v8M9 15l3-3 3 3"/></svg></div>
+                <div class="placeholder-label">Screenshot dell'ingest con pill stepper</div>
+                <div class="placeholder-hint">catone_screenshots/ingest-stepper.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">9</span>
+    </div>
+</section>
+
+<!-- SLIDE 10: COSA FA CATONE / IL PROFESSIONISTA -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">La soluzione</div>
+        <h2 class="serif" contenteditable="true">Lo strumento non sostituisce il giudizio professionale. Lo prepara.</h2>
+        <div class="two-col">
+            <div class="col-card accent">
+                <div class="col-title" contenteditable="true">Cosa fa Catone</div>
+                <ul>
+                    <li contenteditable="true">Legge centinaia di PDF in pochi minuti</li>
+                    <li contenteditable="true">Estrae i dati strutturati dalle dichiarazioni</li>
+                    <li contenteditable="true">Incrocia automaticamente i dati tra documenti</li>
+                    <li contenteditable="true">Segnala anomalie e discrepanze con semafori</li>
+                    <li contenteditable="true">Calcola scadenze e ravvedimento operoso</li>
+                    <li contenteditable="true">Mostra cosa manca prima ancora di iniziare</li>
+                </ul>
+            </div>
+            <div class="col-card accent green">
+                <div class="col-title" contenteditable="true">Cosa fa il professionista</div>
+                <ul>
+                    <li contenteditable="true">Interpreta le anomalie nel contesto del business</li>
+                    <li contenteditable="true">Valuta la materialità delle discrepanze</li>
+                    <li contenteditable="true">Approfondisce i casi che richiedono giudizio</li>
+                    <li contenteditable="true">Chiede spiegazioni mirate al cliente</li>
+                    <li contenteditable="true">Formula il parere finale</li>
+                    <li contenteditable="true">Firma la relazione con piena consapevolezza</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; font-style: italic; font-family: 'Inter', system-ui, sans-serif; color: var(--ink-soft); margin-top: clamp(1rem, 2vh, 1.5rem); font-size: clamp(0.85rem, 1.2vw, 1.05rem);" contenteditable="true">
+            Catone le mostra la mappa. Lei conosce il territorio, e nessuna AI lo cambierà.
+        </p>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">10</span>
+    </div>
+</section>
+
+<!-- SLIDE 11: PANORAMICA (AGGIORNATO) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Il prodotto</div>
+        <h2 class="content-heading serif" contenteditable="true">Panoramica della pratica: tutto in un colpo d'occhio.</h2>
+        <div class="screenshot" style="min-height: clamp(280px, 56vh, 480px); max-height: 60vh;">
+            
+            <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+            <div class="placeholder-label">Screenshot della nuova Panoramica pratica</div>
+            <div class="placeholder-hint">catone_screenshots/panoramica.png</div>
+        </div>
+        <p style="text-align: center; color: var(--ink-soft); margin-top: clamp(0.75rem, 1.5vh, 1.25rem); font-size: clamp(0.75rem, 1vw, 0.9rem);" contenteditable="true">
+            Nuova <strong>HeaderCard</strong> con stato pratica · <strong>Snapshot</strong> con risk score e azioni rapide · Verifiche raggruppate per tributo.
+        </p>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">11</span>
+    </div>
+</section>
+
+<!-- SLIDE 12: DOCUMENTI (AGGIORNATO) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Il prodotto</div>
+        <h2 class="content-heading serif" contenteditable="true">Documenti: classificazione automatica e revisione mirata.</h2>
+        <div class="split-layout" style="grid-template-columns: 1fr 1.6fr;">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">Pill a 4 stati</h3>
+                <ul>
+                    <li contenteditable="true"><strong>Estratto</strong>: dati letti e validati</li>
+                    <li contenteditable="true"><strong>Da rivedere</strong>: dati estratti ma con check matematici falliti</li>
+                    <li contenteditable="true"><strong>In errore</strong>: classificazione o estrazione fallita</li>
+                    <li contenteditable="true"><strong>Mancante</strong>: nessun documento per quel tipo/anno</li>
+                </ul>
+                <h3 class="serif" style="margin-top: clamp(0.75rem, 1.5vh, 1.25rem);" contenteditable="true">CrumbBar + ricerca</h3>
+                <ul>
+                    <li contenteditable="true">Filtro rapido per tipo, anno, stato</li>
+                    <li contenteditable="true">Ricerca testuale immediata</li>
+                    <li contenteditable="true">Click su "Verifica estrazione" apre il PDF accanto ai campi editabili</li>
+                </ul>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></div>
+                <div class="placeholder-label">Screenshot della pagina Documenti ridisegnata</div>
+                <div class="placeholder-hint">catone_screenshots/documenti.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">12</span>
+    </div>
+</section>
+
+<!-- SLIDE 13: SECTION 03 (AGGIORNATO) -->
+<section class="slide section-divider">
+    <div class="slide-content">
+        <div class="section-number">03</div>
+        <div class="section-rule"></div>
+        <h1 class="serif" contenteditable="true">Le verifiche per tributo</h1>
+        <div class="section-sub" contenteditable="true">12 controlli incrociati automatici, organizzati per imposta: esattamente come ragiona un senior tax advisor, ma in secondi.</div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">13</span>
+    </div>
+</section>
+
+<!-- SLIDE 14: PERCHÉ PER TRIBUTO (NUOVA) -->
+<section class="slide">
+    <div class="slide-content" style="justify-content: center;">
+        <div class="kicker">Le verifiche · La nuova organizzazione</div>
+        <div class="narrative">
+            <h2 class="serif" contenteditable="true">Prima: una lista di 10 check. Ora: un workspace per ogni tributo.</h2>
+            <p contenteditable="true">I check incrociati esistevano da tempo. Ma erano <span class="highlight">scorrelati tra loro</span>: il professionista doveva tenere in mente quale verifica riguardava quale dichiarazione.</p>
+            <p contenteditable="true">Da maggio, ogni tributo ha il <span class="highlight">suo workspace dedicato</span>: IRES, IRAP, IVA, Ritenute. Tutti i check rilevanti, le fonti dati, le anomalie e le note partner: in un'unica vista.</p>
+            <p contenteditable="true">E quando ha finito: <span class="highlight">esporta tutto in PowerPoint</span>, pronto per il cliente.</p>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">14</span>
+    </div>
+</section>
+
+<!-- SLIDE 15: PANORAMICA 12 VERIFICHE (AGGIORNATO) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Le verifiche</div>
+        <h2 class="content-heading serif" contenteditable="true">Le 12 verifiche automatiche, raggruppate per tributo.</h2>
+        <div class="check-grid">
+
+            <div class="check-group-label">IRES</div>
+            <div class="check-item">
+                <div class="num-dot">01</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Periodi d'Imposta</div>
+                    <div class="ci-sub" contenteditable="true">Termini di accertamento e tempestività · Redditi SC</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">02</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">IRES vs F24</div>
+                    <div class="ci-sub" contenteditable="true">Saldo e acconti verificati contro F24 · Redditi SC, F24</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">03</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">RF4 vs Bilancio</div>
+                    <div class="ci-sub" contenteditable="true">Utile/perdita Redditi SC vs conto economico · Redditi SC, Bilancio</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">04</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Trend Quadro RF</div>
+                    <div class="ci-sub" contenteditable="true">Variazioni anno su anno &gt; 20% · Redditi SC</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">05</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Inerenza</div>
+                    <div class="ci-sub" contenteditable="true">Variazioni in aumento IRES vs IRAP · Redditi SC, IRAP</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot new">06</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Credito IRES RN <span class="new-badge">NEW</span></div>
+                    <div class="ci-sub" contenteditable="true">Riconciliazione credito Quadro RN anno per anno · Redditi SC</div>
+                </div>
+            </div>
+
+            <div class="check-group-label">IRAP · IVA · Ritenute</div>
+
+            <div class="check-item">
+                <div class="num-dot">07</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">IRAP vs F24</div>
+                    <div class="ci-sub" contenteditable="true">Saldo e acconti IRAP verificati contro F24 · IRAP, F24</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">08</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Liquidazioni IVA vs F24</div>
+                    <div class="ci-sub" contenteditable="true">Debiti IVA mensili/trimestrali vs versamenti · Liquidazioni, F24</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">09</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">LIPE / VH / Liquidazioni</div>
+                    <div class="ci-sub" contenteditable="true">Cross-check comunicazioni AdE · Liquidazioni, IVA, LIPE</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">10</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Riconciliazione VE50</div>
+                    <div class="ci-sub" contenteditable="true">Volume d'affari contabile vs dichiarazione IVA · Bilancio, Dich. IVA</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot new">11</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Credito IVA anno precedente <span class="new-badge">NEW</span></div>
+                    <div class="ci-sub" contenteditable="true">Estrazione Quadro VL e riconciliazione credito · Dich. IVA</div>
+                </div>
+            </div>
+            <div class="check-item">
+                <div class="num-dot">12</div>
+                <div>
+                    <div class="ci-title" contenteditable="true">Ritenute 770 vs F24</div>
+                    <div class="ci-sub" contenteditable="true">Quadro ST confrontato con i versamenti · 770, F24</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">15</span>
+    </div>
+</section>
+
+<!-- SLIDE 16: WORKSPACE IRES (NUOVA) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Le verifiche: Workspace IRES</div>
+        <h2 class="content-heading serif" contenteditable="true">Tutto l'IRES in una sola vista.</h2>
+        <div class="split-layout">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">Cosa trova nel workspace IRES</h3>
+                <ul>
+                    <li contenteditable="true">Periodi d'imposta con scadenze e termini accertamento</li>
+                    <li contenteditable="true">IRES vs F24: saldo, primo acconto, secondo acconto</li>
+                    <li contenteditable="true">RF4 vs Bilancio: tolleranza €500 per arrotondamenti</li>
+                    <li contenteditable="true">Trend Quadro RF: variazioni &gt;20% anno su anno</li>
+                    <li contenteditable="true">Inerenza: confronto IRES vs IRAP, 7 categorie monitorate</li>
+                    <li contenteditable="true"><strong>Credito IRES RN</strong>: riconciliazione anno per anno <span style="color: var(--orange); font-weight: 700;">NEW</span></li>
+                </ul>
+                <div class="legend">
+                    <div class="legend-row"><span class="dot" style="background: var(--red);"></span>F24 mancante o delta significativo</div>
+                    <div class="legend-row"><span class="dot" style="background: #E89868;"></span>Versamento in ritardo con ravvedimento</div>
+                    <div class="legend-row"><span class="dot" style="background: var(--green);"></span>Tutto conforme</div>
+                </div>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+                <div class="placeholder-label">Screenshot del Workspace IRES</div>
+                <div class="placeholder-hint">catone_screenshots/workspace-ires.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">16</span>
+    </div>
+</section>
+
+<!-- SLIDE 17: WORKSPACE IVA (NUOVA) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Le verifiche: Workspace IVA</div>
+        <h2 class="content-heading serif" contenteditable="true">Il tributo più frammentato. Ora, finalmente, unificato.</h2>
+        <div class="split-layout">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">Cosa trova nel workspace IVA</h3>
+                <ul>
+                    <li contenteditable="true">Liquidazioni IVA vs F24: regime mensile/trimestrale rilevato auto</li>
+                    <li contenteditable="true">Interessi 1% per trimestrali (art. 7 DPR 542/1999)</li>
+                    <li contenteditable="true">LIPE / VH / Liquidazioni: cross-check con AdE</li>
+                    <li contenteditable="true">Riconciliazione VE50: soglie ≤5% OK, 5–20% attenzione, &gt;20% critico</li>
+                    <li contenteditable="true"><strong>Credito IVA anno precedente</strong>: estrazione Quadro VL <span style="color: var(--orange); font-weight: 700;">NEW</span></li>
+                    <li contenteditable="true">Tolleranza €50 mensile / €150 trimestrale</li>
+                </ul>
+                <p style="color: var(--ink-mute); font-size: clamp(0.7rem, 0.95vw, 0.85rem); margin-top: 0.75rem; font-style: italic;" contenteditable="true">
+                    Fallback intelligente: se manca il Quadro VH, il sistema usa la LIPE come fonte. Mai una verifica bloccata per un documento mancante.
+                </p>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M12 3v18"/></svg></div>
+                <div class="placeholder-label">Screenshot del Workspace IVA</div>
+                <div class="placeholder-hint">catone_screenshots/workspace-iva.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">17</span>
+    </div>
+</section>
+
+<!-- SLIDE 18: WORKSPACE IRAP + RITENUTE (NUOVA) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Le verifiche: Workspace IRAP e Ritenute</div>
+        <h2 class="content-heading serif" contenteditable="true">IRAP e Ritenute 770: i tributi dove i delta nascosti fanno male.</h2>
+        <div class="split-layout">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">IRAP</h3>
+                <ul>
+                    <li contenteditable="true">Saldo, primo e secondo acconto verificati contro F24</li>
+                    <li contenteditable="true">Codici tributo: 3800 / 3812 / 3813</li>
+                    <li contenteditable="true">Scadenze 30/06 e 30/11 con proroghe COVID e ISA</li>
+                    <li contenteditable="true">Rileva compensazioni in credito</li>
+                </ul>
+                <h3 class="serif" style="margin-top: clamp(0.75rem, 1.5vh, 1.25rem);" contenteditable="true">Ritenute 770 vs F24</h3>
+                <ul>
+                    <li contenteditable="true">Ogni riga del Quadro ST confrontata con i versamenti F24</li>
+                    <li contenteditable="true">Matching per codice tributo e data versamento</li>
+                    <li contenteditable="true">Controllo rispetto scadenza (16 del mese successivo)</li>
+                    <li contenteditable="true">Coerenza flag ravvedimento operoso</li>
+                </ul>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><path d="m16 17 2 2 4-4"/></svg></div>
+                <div class="placeholder-label">Screenshot del Workspace Ritenute / IRAP</div>
+                <div class="placeholder-hint">catone_screenshots/workspace-770.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">18</span>
+    </div>
+</section>
+
+<!-- SLIDE 19: EXPORT PPTX (NUOVA) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Le verifiche · Esportazione</div>
+        <h2 class="content-heading serif" contenteditable="true">Un click: report PowerPoint pronto per il cliente.</h2>
+        <div class="split-layout">
+            <div class="text-col">
+                <h3 class="serif" contenteditable="true">Report PPTX della revisione</h3>
+                <ul>
+                    <li contenteditable="true">Una slide per tributo, con esito, evidenze e note partner</li>
+                    <li contenteditable="true">Tabelle direttamente esportate, già formattate</li>
+                    <li contenteditable="true">Le note partner inserite durante la revisione finiscono nel report</li>
+                    <li contenteditable="true">Logo studio personalizzabile</li>
+                </ul>
+                <p style="color: var(--ink-mute); font-size: clamp(0.7rem, 0.95vw, 0.85rem); margin-top: 0.75rem; font-style: italic;" contenteditable="true">
+                    Il partner non rilegge tutto da capo: legge solo le anomalie, conferma o aggiunge note, e il report è pronto.
+                </p>
+                <p style="color: var(--ink-soft); font-size: clamp(0.75rem, 1.05vw, 0.95rem); margin-top: 0.75rem; font-weight: 600;" contenteditable="true">
+                    Export bloccato automaticamente se ci sono <span style="color: var(--red);">contraddizioni nel bilancio</span> o estrazioni in errore: nessun report parte con dati inaffidabili.
+                </p>
+            </div>
+            <div class="screenshot">
+                
+                <div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v7M9 15l3 3 3-3"/></svg></div>
+                <div class="placeholder-label">Screenshot del PPTX scaricato (anteprima)</div>
+                <div class="placeholder-hint">catone_screenshots/export-pptx.png</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">19</span>
+    </div>
+</section>
+
+<!-- SLIDE 20: SECTION 04 -->
+<section class="slide section-divider">
+    <div class="slide-content">
+        <div class="section-number">04</div>
+        <div class="section-rule"></div>
+        <h1 class="serif" contenteditable="true">Sicurezza e privacy</h1>
+        <div class="section-sub" contenteditable="true">La riservatezza non è una feature: è un prerequisito.</div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">20</span>
+    </div>
+</section>
+
+<!-- SLIDE 21: SICUREZZA -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">Sicurezza</div>
+        <h2 class="content-heading serif" contenteditable="true">I dati dei suoi clienti restano sotto il suo controllo.</h2>
+        <div class="security-grid">
+            <div class="security-card">
+                <h3 class="serif" contenteditable="true">Elaborazione locale</h3>
+                <p contenteditable="true">La classificazione dei documenti avviene con un modello AI dedicato. Nessun PDF viene inviato a servizi esterni per la classificazione.</p>
+            </div>
+            <div class="security-card">
+                <h3 class="serif" contenteditable="true">Nessun training sui dati</h3>
+                <p contenteditable="true">I documenti dei suoi clienti non vengono mai usati per addestrare modelli AI. L'estrazione avviene in tempo reale e i dati restano nel database.</p>
+            </div>
+            <div class="security-card">
+                <h3 class="serif" contenteditable="true">Audit trail completo</h3>
+                <p contenteditable="true">Ogni operazione è tracciata con timestamp. Sa sempre cosa il sistema ha letto e come lo ha interpretato.</p>
+            </div>
+        </div>
+        <div class="security-bottom">
+            Installazione on-premise disponibile &nbsp;·&nbsp; Compliant GDPR &nbsp;·&nbsp; OCR originale conservato accanto al dato interpretato
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">21</span>
+    </div>
+</section>
+
+<!-- SLIDE 22: SECTION 05 DIVIDER (NEW) -->
+<section class="slide section-divider">
+    <div class="slide-content">
+        <div class="section-number">05</div>
+        <div class="section-rule"></div>
+        <h1 class="serif" contenteditable="true">Una proposta per MPO</h1>
+        <div class="section-sub" contenteditable="true">Replicare l'impianto di Catone per la due diligence contabile, costruito insieme a chi la fa ogni giorno.</div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">22</span>
+    </div>
+</section>
+
+<!-- SLIDE 23: BRIDGE: cosa replichiamo / cosa costruiamo (NEW) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">La proposta: l'impianto</div>
+        <h2 class="content-heading serif" contenteditable="true">Stesso impianto provato su Catone. Documenti e verifiche pensati per la DD contabile.</h2>
+        <div class="two-col">
+            <div class="col-card accent">
+                <div class="col-title" contenteditable="true">Cosa replichiamo dall'esperienza Catone</div>
+                <ul>
+                    <li contenteditable="true">Ingest massivo di ZIP, classificazione automatica dei documenti</li>
+                    <li contenteditable="true">Estrazione strutturata dei dati con prompt specializzati per tipo</li>
+                    <li contenteditable="true">Un <strong>workspace per area di analisi</strong>, con controlli incrociati</li>
+                    <li contenteditable="true">Note del professionista accanto a ogni verifica, mai sostitutive</li>
+                    <li contenteditable="true">Export PowerPoint pronto per il cliente o il fondo</li>
+                    <li contenteditable="true">Audit trail completo: chi ha estratto cosa, da quale documento</li>
+                </ul>
+            </div>
+            <div class="col-card green">
+                <div class="col-title" contenteditable="true">Cosa costruiamo per la DD contabile</div>
+                <ul>
+                    <li contenteditable="true">Documenti: bilanci, partitari, conti correnti, prima nota, registri</li>
+                    <li contenteditable="true">Quadrature bilancio ↔ partitari ↔ estratti conto</li>
+                    <li contenteditable="true">Riconciliazioni bancarie e cassa, scritture infrannuali</li>
+                    <li contenteditable="true">Normalizzazione EBITDA e working capital, debito netto</li>
+                    <li contenteditable="true">Analisi clienti/fornitori: concentrazione, scaduto, anomalie</li>
+                    <li contenteditable="true">Le aree che MPO indicherà come prioritarie nel discovery</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">23</span>
+    </div>
+</section>
+
+<!-- SLIDE 24: COME LO COSTRUIAMO INSIEME (NEW) -->
+<section class="slide">
+    <div class="slide-content">
+        <div class="kicker">La proposta: il percorso</div>
+        <h2 class="content-heading serif" contenteditable="true">Una design partnership, non una fornitura software.</h2>
+        <div class="step-flow">
+            <div class="step-card">
+                <div class="num">01</div>
+                <div class="step-title" contenteditable="true">Discovery: 2 settimane</div>
+                <div class="step-desc" contenteditable="true">MPO condivide 2–3 DD contabili completate. Mappiamo insieme documenti, verifiche e formati output. Definiamo l'area di partenza dell'MVP.</div>
+            </div>
+            <div class="step-card">
+                <div class="num">02</div>
+                <div class="step-title" contenteditable="true">MVP prima area: 6–8 settimane</div>
+                <div class="step-desc" contenteditable="true">Costruiamo ingest, classificazione, estrazione e workspace per la prima area concordata (es. quadrature bilancio / riconciliazioni bancarie).</div>
+            </div>
+            <div class="step-card">
+                <div class="num">03</div>
+                <div class="step-title" contenteditable="true">Test su pratica live</div>
+                <div class="step-desc" contenteditable="true">MPO usa lo strumento su una DD reale in corso. Misuriamo tempo risparmiato, errori intercettati, gap di copertura.</div>
+            </div>
+            <div class="step-card">
+                <div class="num">04</div>
+                <div class="step-title" contenteditable="true">Roadmap di espansione</div>
+                <div class="step-desc" contenteditable="true">Aree successive prioritizzate da MPO. Cadenza release ogni 2–3 settimane. Governance condivisa su modello commerciale e proprietà.</div>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 2rem); margin-top: clamp(0.75rem, 2vh, 1.5rem); padding: clamp(0.75rem, 1.5vh, 1.25rem); background: rgba(30, 188, 136, 0.08); border-left: 3px solid var(--orange);">
+            <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: clamp(0.7rem, 0.95vw, 0.85rem); font-weight: 700; text-transform: uppercase; letter-spacing: -0.31px; color: var(--orange); margin-bottom: 0.4rem;">MPO porta</div>
+                <div style="font-size: clamp(0.8rem, 1.1vw, 1rem); line-height: 1.5;">Dominio, metodologia, pratiche reali per il training e il test, validazione delle verifiche.</div>
+            </div>
+            <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: clamp(0.7rem, 0.95vw, 0.85rem); font-weight: 700; text-transform: uppercase; letter-spacing: -0.31px; color: var(--orange); margin-bottom: 0.4rem;">LR Tech porta</div>
+                <div style="font-size: clamp(0.8rem, 1.1vw, 1rem); line-height: 1.5;">La piattaforma Catone, il team di prodotto, l'esperienza di 18 mesi di DD fiscale su pratiche vere.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">24</span>
+    </div>
+</section>
+
+<!-- SLIDE 25: CHI SIAMO -->
+<section class="slide">
+    <div class="slide-content">
+        <div style="display: flex; gap: clamp(1rem, 2vw, 2rem); align-items: baseline; margin-bottom: clamp(1rem, 2vh, 1.5rem);">
+            <span style="font-family: 'Inter', system-ui, sans-serif; font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 900; color: var(--orange); line-height: 1;">06</span>
+            <h1 class="serif" style="font-size: clamp(1.5rem, 3vw, 2.5rem);" contenteditable="true">Chi siamo e prossimi passi</h1>
+        </div>
+        <div style="height: 1px; background: var(--rule); margin-bottom: clamp(1rem, 2vh, 1.5rem);"></div>
+
+        <div class="team-grid">
+            <div class="team-list">
+                <h3 class="serif" style="margin-bottom: clamp(0.75rem, 1.5vh, 1rem);" contenteditable="true">Il team</h3>
+                <p class="intro" contenteditable="true">Fondata da professionisti con esperienza in consulenza fiscale e tecnologia. Conosciamo il lavoro dello studio professionale perché ci siamo cresciuti dentro.</p>
+                <div class="team-member">
+                    <div class="name" contenteditable="true">Lapo Lazzati: Founder</div>
+                    <div class="bio" contenteditable="true">Fondatore di 2 Startup, passato in Nubank e Infinitepay, 2 unicorni Fintech. Ha vissuto il problema della due diligence in prima persona.</div>
+                </div>
+                <div class="team-member">
+                    <div class="name" contenteditable="true">Giuseppe Busardò: Domain Lead</div>
+                    <div class="bio" contenteditable="true">Dottore Commercialista, Partner presso Lazzati Rizzi. Specializzato in tax DD per fondi di private equity. Bocconi.</div>
+                </div>
+                <div class="team-member">
+                    <div class="name" contenteditable="true">Giovanni Rizzi: Advisor &amp; Domain Master</div>
+                    <div class="bio" contenteditable="true">Equity Partner di Lazzati Rizzi. 20+ anni in M&amp;A, transfer pricing e fiscalità internazionale per fondi e gruppi industriali.</div>
+                </div>
+            </div>
+            <div>
+                <div class="cta-card">
+                    <div class="cta-kicker" contenteditable="true">Prossimi passi con MPO</div>
+                    <h3 class="serif" contenteditable="true">Partiamo con un discovery di due settimane.</h3>
+                    <p contenteditable="true">Ci condividete 2–3 DD contabili già chiuse. Mappiamo insieme documenti, verifiche e formato output, e torniamo con il perimetro dell'MVP e una proposta operativa.</p>
+                    <div class="email" contenteditable="true">lapo@catone.ai</div>
+                    <div class="url" contenteditable="true">catone.ai</div>
+                </div>
+            </div>
+        </div>
+        <div class="team-brand">Catone<span class="dot">.</span></div>
+    </div>
+    <div class="slide-footer">
+        <span class="left">RISERVATO &nbsp;|&nbsp; Catone.ai</span>
+        <span class="right">25</span>
+    </div>
+</section>
+
+<script>
+/* === EDIT MODE ===
+   Press "E" to toggle inline editing. Press "X" to export edited HTML.
+   The contenteditable attribute is set on text elements; the browser handles
+   the editing UI. Changes live in the DOM only - export to persist them.
+*/
+function toggleEdit() {
+    document.body.classList.toggle('edit-mode');
+    const editable = document.querySelectorAll(
+        'h1, h2, h3, p, li, .step-title, .step-desc, .ci-title, .ci-sub, ' +
+        '.col-title, .label, .desc, .quote, .tagline, .meta, .section-sub, ' +
+        '.bottom-banner, .cta-kicker, .email, .url, .name, .bio, .intro, ' +
+        '.index-title, .index-sub'
+    );
+    editable.forEach(el => {
+        el.contentEditable = document.body.classList.contains('edit-mode');
+    });
+}
+
+function exportHTML() {
+    /* Serialize the current document state, then download as a new file.
+       Uses outerHTML which is safe: it serializes the existing DOM, not
+       injecting user input. */
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Catone_Presentazione_Maggio_2026_edited.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.target.isContentEditable) return;
+
+    if (e.key === 'e' || e.key === 'E') toggleEdit();
+    if ((e.key === 'x' || e.key === 'X') && document.body.classList.contains('edit-mode')) exportHTML();
+    if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+    }
+    if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        scrollSlide(1);
+    }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        scrollSlide(-1);
+    }
+});
+
+function scrollSlide(direction) {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const current = slides.findIndex(s => {
+        const rect = s.getBoundingClientRect();
+        return rect.top >= -window.innerHeight / 2 && rect.top < window.innerHeight / 2;
+    });
+    const next = Math.max(0, Math.min(slides.length - 1, current + direction));
+    slides[next].scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+
+</body></html>
